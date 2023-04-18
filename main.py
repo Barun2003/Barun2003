@@ -78,15 +78,15 @@ async def get_books(book_ids: Optional[str] = None):
     if book_ids is None:
         raise HTTPException(400, "Missing book_id parameter")
     else:
-        book_ids = book_ids.split(",")  # Split the book_ids parameter by comma to get a list of book IDs
-        book_ids = book_ids[:3]  # Get maximum of 3 book IDs
+        book_ids = book_ids.split(",")  
+        book_ids = book_ids[:3]  
 
         result = {}
         for book_id in book_ids:
             for book in BOOKS:
                 if book.book_id == book_id:
-                    result[book_id] = book  # Fetch book details from BOOKS list
-                    break  # Break the loop once the book is found
+                    result[book_id] = book  
+                    break  
         return result
 
 
