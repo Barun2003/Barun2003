@@ -88,29 +88,4 @@ async def get_books(book_ids: Optional[str] = None):
                     result[book_id] = book  
                     break  
         return result
-
-
-@app.get("/get-book-image")
-async def get_book_image(book_id: str):
-    for book in BOOKS:
-        if book.book_id == book_id:
-            image_url = book.img_url
-            response = requests.get(image_url)
-            return Response(content=response.content, media_type="image/jpeg")
-
-    raise HTTPException(404, f"Book ID {book_id} not found in database.")
-
-
-@app.get("/download-book-image")
-async def download_book_image(book_id: str):
-    for book in BOOKS:
-        if book.book_id == book_id:
-            image_url = book.img_url
-            image_name = f"{book.book_id}.jpg"
-            response = requests.get(image_url)
-            with open(image_name, "wb") as f:
-                f.write(response.content)
-            return {"message": f"Book image for ID {book_id} has been downloaded and saved as {image_name}."}
-
-    raise HTTPException(404, f"Book ID {book_id} not found in database.")
-
+    
