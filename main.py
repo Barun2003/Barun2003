@@ -75,12 +75,6 @@ async def add_book(book: Book):
     return {"book_id": book.book_id}
 
 
-import json
-import os
-from fastapi import FastAPI
-from fastapi.responses import FileResponse
-
-app = FastAPI()
 
 @app.get("/get-book")
 async def get_book(book_id: str):
